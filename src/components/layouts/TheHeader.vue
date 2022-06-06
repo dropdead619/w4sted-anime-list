@@ -10,8 +10,8 @@ const toggleDark = useToggle(isDark);
       <IconBack class="w-8 mr-1 cursor-pointer" @click="$router.go(-1)" />
     </div>
     <div class="text-xl sm:text-2xl dark:text-slate-50">
-      <RouterLink :to="{ name: 'MainPage' }" class="flex font-bold">
-        Anime list
+      <RouterLink :to="{ name: 'main' }" class="flex font-bold drop-shadow-[0rem_0rem_1rem_#f0f]">
+        w4sted4niList
       </RouterLink>
     </div>
     <BaseButton class="py-1 bg-primary" @click="toggleDark()">

@@ -2,19 +2,37 @@ import type { RouteRecordRaw } from 'vue-router';
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    redirect: {
-      name: 'MainPage',
+    path: '/login',
+    meta: {
+      onlyLoggedOut: true,
     },
+    component: () => import('@/layouts/TheLayoutAuth.vue'),
+    children: [
+      {
+        path: '',
+        name: 'auth',
+        component: () => import('../pages/auth/LoginPage.vue'),
+      },
+    ],
   },
   {
-    path: '/main',
-    name: 'MainPage',
-    component: () => import('../pages/MainPage.vue'),
+    path: '/',
+    name: 'default',
+    redirect: {
+      name: 'main',
+    },
+    component: () => import('@/layouts/TheLayoutDefault.vue'),
+    children: [
+      {
+        path: '/main',
+        name: 'main',
+        component: () => import('../pages/MainPage.vue'),
+      },
+    ],
   },
   {
     path: '/:pathMatch(.*)*',
-    name: 'Error404',
+    name: 'error404',
     meta: {
       title: 'Error 404 | Page not found',
     },

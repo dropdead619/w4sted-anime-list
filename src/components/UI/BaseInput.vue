@@ -28,7 +28,7 @@ const emit = defineEmits(['update:modelValue']);
     <input
       v-bind="$attrs"
       :class="{ 'bg-gray-300': $attrs.disabled }"
-      class="p-2 max-w-xs rounded border border-solid border-slate-300 outline-none dark:text-black"
+      class="p-2 border border-solid rounded outline-none border-slate-300 dark:text-black"
       :value="props.modelValue"
       @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
     >

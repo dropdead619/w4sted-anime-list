@@ -12,8 +12,8 @@ const { x } = useMouse({ touch: false });
         Create your own list of anime titles you watched or will watch in the future!
         Browse through various genres, most watched anime titles, rate ones you like and have fun!
       </div>
-      <RouterLink :to="{ name: 'MainPage' }" class="p-2 text-4xl rounded bg-primary hover:hue-rotate-60 hover:drop-shadow-[0rem_0rem_0.4rem_#0ff]">
-        Let's get started...
+      <RouterLink :to="{ name: 'main' }" class="px-4 py-2 text-4xl rounded bg-primary hover:hue-rotate-60 hover:drop-shadow-[0rem_0rem_0.4rem_#0ff]">
+        Get started...
       </RouterLink>
     </div>
     <div class="max-w-3xl bg-glow">
