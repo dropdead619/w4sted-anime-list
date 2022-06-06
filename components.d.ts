@@ -5,7 +5,18 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
+    BaseButton: typeof import('./src/components/UI/BaseButton.vue')['default']
+    BaseCard: typeof import('./src/components/UI/BaseCard.vue')['default']
+    BaseFileProgress: typeof import('./src/components/UI/BaseFileProgress.vue')['default']
+    BaseInput: typeof import('./src/components/UI/BaseInput.vue')['default']
+    BaseModal: typeof import('./src/components/UI/BaseModal.vue')['default']
+    BaseSelect: typeof import('./src/components/UI/BaseSelect.vue')['default']
+    IconBack: typeof import('./src/components/Icons/IconBack.vue')['default']
+    IconCheck: typeof import('./src/components/Icons/IconCheck.vue')['default']
+    IconMoon: typeof import('./src/components/Icons/IconMoon.vue')['default']
+    IconNext: typeof import('./src/components/Icons/IconNext.vue')['default']
+    IconPlus: typeof import('./src/components/Icons/IconPlus.vue')['default']
+    IconSun: typeof import('./src/components/Icons/IconSun.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TheHeader: typeof import('./src/components/layouts/TheHeader.vue')['default']

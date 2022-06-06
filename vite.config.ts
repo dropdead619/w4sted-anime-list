@@ -15,6 +15,9 @@ export default defineConfig({
       imports: [
         'vue',
         'vue-router',
+        {
+          '@vueuse/core': ['useDark', 'useToggle', 'useMouse', 'useBreakpoints', 'breakpointsTailwind'],
+        },
       ],
       dts: 'src/auto-imports.d.ts',
     }),
