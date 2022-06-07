@@ -1,10 +1,7 @@
-import { useAuthStore } from '@/stores/auth.store';
+const baseURL = import.meta.env.VITE_SERVER_API_URL;
 
-const baseURL = import.meta.env.VITE_SERVER_URL;
-const headers = { 'Content-Type': 'application/json' };
-
-export const BaseGET = async (url: string, options: any) => {
-  const response = await fetch(`${baseURL}/${useAuthStore().userId}${url}`, { headers, ...options });
+export const apiGET = async (url: string, options?: any) => {
+  const response = await fetch(`${baseURL}/${url}`, { ...options });
   const data = await response.json();
   if (response.ok)
     return data;
@@ -13,10 +10,9 @@ export const BaseGET = async (url: string, options: any) => {
     throw new Error(data.message || 'Failed to fetch data');
 };
 
-export const BasePOST = async (url: string, body: any, options: any) => {
-  const response = await fetch(`${baseURL}/${useAuthStore().userId}${url}`, {
+export const apiPOST = async (url: string, body: any, options?: any) => {
+  const response = await fetch(`${baseURL}/${url}`, {
     method: 'POST',
-    headers,
     body: JSON.stringify(body),
     ...options,
   });
@@ -28,10 +24,9 @@ export const BasePOST = async (url: string, body: any, options: any) => {
     throw new Error(data.message || 'Failed to create data');
 };
 
-export const BasePUT = async (url: string, body: any, options: any) => {
-  const response = await fetch(`${baseURL}/${useAuthStore().userId}${url}`, {
+export const apiPUT = async (url: string, body: any, options: any) => {
+  const response = await fetch(`${baseURL}/${url}`, {
     method: 'PUT',
-    headers,
     body: JSON.stringify(body),
     ...options,
   });
@@ -43,10 +38,9 @@ export const BasePUT = async (url: string, body: any, options: any) => {
     throw new Error(data.message || 'Failed to update data');
 };
 
-export const BasePATCH = async (url: string, body: any, options: any) => {
-  const response = await fetch(`${baseURL}/${useAuthStore().userId}${url}`, {
+export const apiPATCH = async (url: string, body: any, options: any) => {
+  const response = await fetch(`${baseURL}/${url}`, {
     method: 'PATCH',
-    headers,
     body: JSON.stringify(body),
     ...options,
   });
@@ -58,8 +52,8 @@ export const BasePATCH = async (url: string, body: any, options: any) => {
     throw new Error(data.message || 'Failed to update data');
 };
 
-export const BaseDELETE = async (url: string, options: any) => {
-  const response = await fetch(`${baseURL}/${useAuthStore().userId}${url}`, {
+export const apiDELETE = async (url: string, options: any) => {
+  const response = await fetch(`${baseURL}/${url}`, {
     method: 'DELETE',
     ...options,
   });

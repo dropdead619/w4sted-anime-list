@@ -28,6 +28,11 @@ export const routes: RouteRecordRaw[] = [
         name: 'main',
         component: () => import('../pages/MainPage.vue'),
       },
+      {
+        path: '/titles',
+        name: 'titles',
+        component: () => import('../pages/titles/TitlesMain.vue'),
+      },
     ],
   },
   {
