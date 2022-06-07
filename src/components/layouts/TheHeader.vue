@@ -1,6 +1,11 @@
 <script setup lang="ts">
+import { useAuthStore } from '@/stores/auth.store';
+
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
+const auth = useAuthStore();
+
+const isLoggedIn = computed(() => auth.token);
 </script>
 
 <template>
@@ -10,13 +15,21 @@ const toggleDark = useToggle(isDark);
       <IconBack class="w-8 mr-1 cursor-pointer" @click="$router.go(-1)" />
     </div>
     <div class="text-xl sm:text-2xl dark:text-slate-50">
-      <RouterLink :to="{ name: 'main' }" class="flex font-bold drop-shadow-[0rem_0rem_1rem_#f0f]">
+      <RouterLink :to="{ name: 'main' }" class="flex font-bold dark:drop-shadow-[0rem_0rem_1rem_#f0f]">
         w4sted4niList
       </RouterLink>
     </div>
-    <BaseButton class="py-1 bg-primary" @click="toggleDark()">
-      <IconMoon v-if="isDark" />
-      <IconSun v-else />
-    </BaseButton>
+    <div class="flex items-center">
+      <BaseButton class="mx-11 bg-primary" @click="toggleDark()">
+        <IconMoon v-if="isDark" />
+        <IconSun v-else />
+      </BaseButton>
+      <RouterLink v-if="!isLoggedIn" :to="{ name: 'auth' }">
+        Login
+      </RouterLink>
+      <BaseButton v-else @click="auth.signout()">
+        Logout
+      </BaseButton>
+    </div>
   </div>
 </template>

@@ -22,6 +22,7 @@ specifiers:
   vite: ^2.9.9
   vue: ^3.2.25
   vue-meta: ^3.0.0-alpha.8
+  vue-pagination-tw: ^0.1.2
   vue-router: ^4.0.14
   vue-tsc: ^0.34.7
 
@@ -34,6 +35,7 @@ dependencies:
   vee-validate: 4.5.11_vue@3.2.36
   vue: 3.2.36
   vue-meta: 3.0.0-alpha.10_vue@3.2.36
+  vue-pagination-tw: 0.1.2_vue@3.2.36
   vue-router: 4.0.15_vue@3.2.36
 
 devDependencies:
@@ -3887,6 +3889,15 @@ packages:
     resolution: {integrity: sha512-rYeIGkhm1gKBcReEkPHiV6LV2Y6BZTMGTkGw1mQIZTxfFcVJL0srLZsL1zAmLeTGxMrlDYylMQEVSYRkDnwz3A==}
     peerDependencies:
       vue: ^3.0.0
+    dependencies:
+      vue: 3.2.36
+    dev: false
+
+  /vue-pagination-tw/0.1.2_vue@3.2.36:
+    resolution: {integrity: sha512-PZzr1m6eB6xnZuqvxmdx1WjXA0pMXbwz6Tqf3A5xf1ya179QRiQd+X/8RhWz/DPEjh+TQRU1ZfkS6tFhDb0WWw==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      vue: ^3.0.5
     dependencies:
       vue: 3.2.36
     dev: false

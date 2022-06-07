@@ -48,6 +48,8 @@ export const useAuthStore = defineStore('auth', {
         throw error;
       }
       this.userId = responseData.localId;
+      this.token = responseData.idToken;
+      this.email = responseData.email;
     },
     signout() {
       this.userId = null;

@@ -48,11 +48,11 @@ const onSubmit = handleSubmit(async (values: unknown) => {
 <template>
   <div class="flex flex-col items-center justify-center py-24">
     <div class="mb-4">
-      <h1 class="m-4 text-lg font-bold">
+      <h1 class="m-4 text-4xl font-bold ">
         {{ loginModeName }}
       </h1>
     </div>
-    <BaseCard class="w-full max-w-lg p-12 bg-slate-200">
+    <BaseCard class="w-full max-w-lg p-12 bg-slate-200 dark:bg-theme-dark-1 drop-shadow-[0rem_0rem_0.7rem_#f0f]">
       <form
         class="m-auto"
         @submit.prevent="onSubmit"

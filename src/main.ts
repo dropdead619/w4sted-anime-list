@@ -5,6 +5,7 @@ import { createMetaManager } from 'vue-meta';
 import App from './App.vue';
 
 import './style/index.css';
+import 'vue-pagination-tw/styles';
 
 import router from './router';
 import '@/router/before-each-guard';

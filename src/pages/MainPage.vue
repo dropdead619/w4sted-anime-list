@@ -5,7 +5,7 @@ const { x } = useMouse({ touch: false });
 <template>
   <div class="container flex justify-between px-4 pt-8 m-auto">
     <div class="max-w-3xl">
-      <h1 class="mb-16 text-8xl  drop-shadow-[0rem_0rem_1rem_#f0f]">
+      <h1 class="mb-16 text-8xl dark:drop-shadow-[0rem_0rem_1rem_#f0f]">
         w4sted4niList
       </h1>
       <div class="max-w-2xl text-4xl  drop-shadow-[0rem_0rem_1rem_#0ff] mb-20">

@@ -2,7 +2,7 @@ import type { RouteRecordRaw } from 'vue-router';
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '/login',
+    path: '/auth',
     meta: {
       onlyLoggedOut: true,
     },
@@ -19,13 +19,16 @@ export const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'default',
     redirect: {
-      name: 'main',
+      name: 'titles',
     },
     component: () => import('@/layouts/TheLayoutDefault.vue'),
     children: [
       {
         path: '/main',
         name: 'main',
+        meta: {
+          onlyLoggedOut: true,
+        },
         component: () => import('../pages/MainPage.vue'),
       },
       {
