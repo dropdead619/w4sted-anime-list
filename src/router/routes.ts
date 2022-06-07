@@ -19,7 +19,7 @@ export const routes: RouteRecordRaw[] = [
     path: '/',
     name: 'default',
     redirect: {
-      name: 'titles',
+      name: 'main',
     },
     component: () => import('@/layouts/TheLayoutDefault.vue'),
     children: [
