@@ -9,7 +9,7 @@ export default defineConfig({
   plugins: [
     vue(),
     Components({
-      dts: true,
+      dts: 'src/components.d.ts',
     }),
     AutoImport({
       imports: [
