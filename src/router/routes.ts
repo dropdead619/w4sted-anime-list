@@ -36,6 +36,11 @@ export const routes: RouteRecordRaw[] = [
         name: 'titles',
         component: () => import('../pages/titles/TitlesMain.vue'),
       },
+      {
+        path: '/titles/:id',
+        name: 'title',
+        component: () => import('../pages/titles/TitleView.vue'),
+      },
     ],
   },
   {

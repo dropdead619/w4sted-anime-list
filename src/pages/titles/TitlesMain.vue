@@ -2,6 +2,7 @@
 import VuePaginationTw from 'vue-pagination-tw';
 import { apiGET } from '@/api/jikanApiRequests';
 import { debounce } from '@/utilities/debounce';
+import { useAppStore } from '@/stores/app.store';
 
 interface IPagination {
   page: number
@@ -11,18 +12,20 @@ interface IPagination {
 
 const state = reactive({
   pagination: undefined as IPagination | undefined,
-  data: null as any,
   searchInput: '',
+  currentPage: 1,
 });
 
-const getTopAnimeList = async (page?: number) => {
-  const response = await apiGET(`top/anime?page=${page ?? 1}`);
+const appStore = useAppStore();
+
+const getTopAnimeList = async () => {
+  const response = await apiGET(`top/anime?page=${appStore.currentPage}`);
   state.pagination = {
     page: response.pagination.current_page,
     perPage: response.pagination.items.per_page,
     total: response.pagination.items.total,
   };
-  state.data = response.data;
+  appStore.data = response.data;
 };
 
 const getAnimeListByName = async (name: string, page?: number) => {
@@ -35,13 +38,14 @@ const getAnimeListByName = async (name: string, page?: number) => {
     perPage: response.pagination.items.per_page,
     total: response.pagination.items.total,
   };
-  state.data = response.data;
+  appStore.data = response.data;
 };
 
 getTopAnimeList();
 
 const onChange = (page: number) => {
-  getTopAnimeList(page);
+  appStore.currentPage = page;
+  getTopAnimeList();
 };
 
 const onSearch = debounce((e: Event) => {
@@ -61,28 +65,7 @@ const onSearch = debounce((e: Event) => {
       />
     </div>
 
-    <div class="py-12">
-      <div
-        v-for="anime in state.data"
-        :key="anime.mal_id"
-      >
-        <BaseCard class="bg-slate-200 dark:bg-theme-dark-2">
-          <div class="flex flex-wrap justify-center sm:justify-start sm:flex-nowrap">
-            <img
-              class="h-full mr-4 drop-shadow-[0rem_0rem_0.2rem_#fff] rounded-lg"
-              :src="anime.images.webp.image_url"
-              :alt="anime.title"
-            >
-            <div class="p-4">
-              <h2 class="mb-4 text-2xl font-semibold">
-                {{ anime.title }}
-              </h2>
-              <div>{{ anime.synopsis ?? 'No description' }}</div>
-            </div>
-          </div>
-        </BaseCard>
-      </div>
-    </div>
+    <TitlesList :list="appStore.data" />
     <VuePaginationTw
       v-if="state.pagination"
       v-model="state.pagination.page"

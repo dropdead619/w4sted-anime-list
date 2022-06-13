@@ -1,5 +1,9 @@
 <script setup lang="ts">
+import { useAppStore } from '@/stores/app.store';
+
 const { x } = useMouse({ touch: false });
+const appStore = useAppStore();
+appStore.currentPage = 1;
 </script>
 
 <template>
