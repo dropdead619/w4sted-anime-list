@@ -22,7 +22,7 @@ appStore.currentPage = 1;
     </div>
     <div class="max-w-3xl bg-glow">
       <img
-        src="../assets/1418303123_753027624.webp"
+        src="../assets/main-page.webp"
         height="980"
         width="849"
         draggable="false"

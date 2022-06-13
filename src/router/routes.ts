@@ -2,20 +2,6 @@ import type { RouteRecordRaw } from 'vue-router';
 
 export const routes: RouteRecordRaw[] = [
   {
-    path: '/auth',
-    meta: {
-      onlyLoggedOut: true,
-    },
-    component: () => import('@/layouts/TheLayoutAuth.vue'),
-    children: [
-      {
-        path: '',
-        name: 'auth',
-        component: () => import('../pages/auth/LoginPage.vue'),
-      },
-    ],
-  },
-  {
     path: '/',
     name: 'default',
     redirect: {
@@ -23,6 +9,14 @@ export const routes: RouteRecordRaw[] = [
     },
     component: () => import('@/layouts/TheLayoutDefault.vue'),
     children: [
+      {
+        path: '',
+        meta: {
+          onlyLoggedOut: true,
+        },
+        name: 'auth',
+        component: () => import('../pages/auth/LoginPage.vue'),
+      },
       {
         path: '/main',
         name: 'main',
@@ -41,14 +35,15 @@ export const routes: RouteRecordRaw[] = [
         name: 'title',
         component: () => import('../pages/titles/TitleView.vue'),
       },
+      {
+        path: '/:pathMatch(.*)*',
+        name: 'error404',
+        meta: {
+          title: 'Error 404 | Page not found',
+        },
+        component: () => import('../pages/Error404.vue'),
+      },
     ],
   },
-  {
-    path: '/:pathMatch(.*)*',
-    name: 'error404',
-    meta: {
-      title: 'Error 404 | Page not found',
-    },
-    component: () => import('../pages/Error404.vue'),
-  },
+
 ];

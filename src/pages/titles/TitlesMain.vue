@@ -4,23 +4,15 @@ import { apiGET } from '@/api/jikanApiRequests';
 import { debounce } from '@/utilities/debounce';
 import { useAppStore } from '@/stores/app.store';
 
-interface IPagination {
-  page: number
-  perPage: number
-  total: number
-}
-
 const state = reactive({
-  pagination: undefined as IPagination | undefined,
   searchInput: '',
-  currentPage: 1,
 });
 
 const appStore = useAppStore();
 
 const getTopAnimeList = async () => {
   const response = await apiGET(`top/anime?page=${appStore.currentPage}`);
-  state.pagination = {
+  appStore.pagination = {
     page: response.pagination.current_page,
     perPage: response.pagination.items.per_page,
     total: response.pagination.items.total,
@@ -33,7 +25,7 @@ const getAnimeListByName = async (name: string, page?: number) => {
     q: name,
     page: page?.toString() ?? '1',
   })}`);
-  state.pagination = {
+  appStore.pagination = {
     page: response.pagination.current_page,
     perPage: response.pagination.items.per_page,
     total: response.pagination.items.total,
@@ -41,7 +33,8 @@ const getAnimeListByName = async (name: string, page?: number) => {
   appStore.data = response.data;
 };
 
-getTopAnimeList();
+if (!appStore.data)
+  getTopAnimeList();
 
 const onChange = (page: number) => {
   appStore.currentPage = page;
@@ -65,14 +58,31 @@ const onSearch = debounce((e: Event) => {
       />
     </div>
 
-    <TitlesList :list="appStore.data" />
+    <TitlesList
+      v-if="appStore.data?.length"
+      class="max-w-6xl"
+      :list="appStore.data"
+    />
+    <template v-else>
+      <div class="mx-auto mt-12 flex flex-col items-center">
+        <img
+          class="max-w-xl drop-shadow-[0rem_0rem_0.7rem_#fff] mb-12"
+          src="../../assets/nothing-to-show.webp"
+          alt="Not found"
+        >
+        <div class="text-5xl">
+          No results...
+        </div>
+      </div>
+    </template>
+
     <VuePaginationTw
-      v-if="state.pagination"
-      v-model="state.pagination.page"
+      v-if="appStore.pagination && appStore.data?.length"
+      v-model="appStore.pagination.page"
       class="pb-6"
-      :total-items="state.pagination.total"
-      :current-page="state.pagination.page"
-      :per-page="state.pagination.perPage"
+      :total-items="appStore.pagination.total"
+      :current-page="appStore.pagination.page"
+      :per-page="appStore.pagination.perPage"
       border-active-color="border-red-500"
       border-text-active-color="text-red-500"
       @page-changed="onChange"

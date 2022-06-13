@@ -6,6 +6,10 @@ const toggleDark = useToggle(isDark);
 const auth = useAuthStore();
 
 const isLoggedIn = computed(() => auth.token);
+
+const logoRedirect = computed(() => {
+  return isLoggedIn.value ? { name: 'titles' } : { name: 'main' };
+});
 </script>
 
 <template>
@@ -15,7 +19,7 @@ const isLoggedIn = computed(() => auth.token);
       <IconBack class="w-8 mr-1 cursor-pointer" @click="$router.go(-1)" />
     </div>
     <div class="text-xl sm:text-2xl dark:text-slate-50">
-      <RouterLink :to="{ name: 'main' }" class="flex font-bold dark:drop-shadow-[0rem_0rem_1rem_#f0f]">
+      <RouterLink :to="logoRedirect" class="flex font-bold dark:drop-shadow-[0rem_0rem_1rem_#f0f]">
         w4sted4niList
       </RouterLink>
     </div>
