@@ -1,13 +1,19 @@
+import { useGlobalLoading } from '@/composables/useLoading';
+
 const baseURL = import.meta.env.VITE_SERVER_API_URL;
 
+const loading = useGlobalLoading();
+
 export const apiGET = async (url: string, options?: any) => {
+  loading.startLoading();
+
   const response = await fetch(`${baseURL}/${url}`, { ...options });
   const data = await response.json();
+  loading.stopLoading();
   if (response.ok)
     return data;
 
-  else
-    throw new Error(data.message || 'Failed to fetch data');
+  else throw new Error(data.message || 'Failed to fetch data');
 };
 
 export const apiPOST = async (url: string, body: any, options?: any) => {

@@ -3,10 +3,13 @@ import VuePaginationTw from 'vue-pagination-tw';
 import { apiGET } from '@/api/jikanApiRequests';
 import { debounce } from '@/utilities/debounce';
 import { useAppStore } from '@/stores/app.store';
+import { useGlobalLoading } from '@/composables/useLoading';
 
 const state = reactive({
   searchInput: '',
 });
+
+const { isLoading } = useGlobalLoading();
 
 const appStore = useAppStore();
 
@@ -58,13 +61,8 @@ const onSearch = debounce((e: Event) => {
       />
     </div>
 
-    <TitlesList
-      v-if="appStore.data?.length"
-      class="max-w-6xl"
-      :list="appStore.data"
-    />
-    <template v-else>
-      <div class="mx-auto mt-12 flex flex-col items-center">
+    <template v-if="!appStore.data?.length && !isLoading">
+      <div class="flex flex-col items-center mx-auto mt-12">
         <img
           class="max-w-xl drop-shadow-[0rem_0rem_0.7rem_#fff] mb-12"
           src="../../assets/nothing-to-show.webp"
@@ -75,6 +73,12 @@ const onSearch = debounce((e: Event) => {
         </div>
       </div>
     </template>
+
+    <TitlesList
+      v-else
+      class="max-w-6xl"
+      :list="appStore.data"
+    />
 
     <VuePaginationTw
       v-if="appStore.pagination && appStore.data?.length"

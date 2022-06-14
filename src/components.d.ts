@@ -5,6 +5,7 @@ import '@vue/runtime-core'
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    BaseBackdrop: typeof import('./components/UI/BaseBackdrop.vue')['default']
     BaseButton: typeof import('./components/UI/BaseButton.vue')['default']
     BaseCard: typeof import('./components/UI/BaseCard.vue')['default']
     BaseFileProgress: typeof import('./components/UI/BaseFileProgress.vue')['default']
@@ -20,6 +21,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TheHeader: typeof import('./components/layouts/TheHeader.vue')['default']
+    ThePreloader: typeof import('./components/ThePreloader.vue')['default']
     TitleItem: typeof import('./components/titles/TitleItem.vue')['default']
     TitlesList: typeof import('./components/titles/TitlesList.vue')['default']
   }

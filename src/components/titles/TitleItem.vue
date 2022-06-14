@@ -18,7 +18,7 @@ const props = defineProps<Props>();
       >
       <div class="p-4">
         <h2 class="mb-4 text-2xl font-semibold">
-          {{ props.title.title }}
+          {{ props.title.title }} <span v-if="props.title.year">({{ props.title.year }})</span>
         </h2>
         <div>{{ props.title.synopsis ?? 'No description' }}</div>
       </div>

@@ -1,8 +1,12 @@
 <script setup lang="ts">
+import ThePreloader from './components/ThePreloader.vue';
+import { useGlobalLoading } from './composables/useLoading';
+const { isLoading } = useGlobalLoading();
 </script>
 
 <template>
   <RouterView />
+  <ThePreloader v-if="isLoading" />
 </template>
 
 <style>

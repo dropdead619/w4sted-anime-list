@@ -10,20 +10,20 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('@/layouts/TheLayoutDefault.vue'),
     children: [
       {
-        path: '',
-        meta: {
-          onlyLoggedOut: true,
-        },
-        name: 'auth',
-        component: () => import('../pages/auth/LoginPage.vue'),
-      },
-      {
         path: '/main',
         name: 'main',
         meta: {
           onlyLoggedOut: true,
         },
         component: () => import('../pages/MainPage.vue'),
+      },
+      {
+        path: '/auth',
+        meta: {
+          onlyLoggedOut: true,
+        },
+        name: 'auth',
+        component: () => import('../pages/auth/LoginPage.vue'),
       },
       {
         path: '/titles',
